@@ -25,5 +25,14 @@ void loop() {
   Serial.print(valorBrutoSensor);
   Serial.print(" ");
   Serial.println(tempCelsius);
+  
+  // Método usado na biblioteca do TMP36. Não usa map.
+  float _vRef = 5.0;
+  float _tensaoSensor = (valorBrutoSensor/1024.0) * _vRef;
+  // O sensor TMP36 tem 0.5V de OffSet
+  float _tempC = (_tensaoSensor - .5) * 100;
+  Serial.print("--> Método da biblioteca ");
+  Serial.println(_tempC);
+  
   delay(1000);
 }
